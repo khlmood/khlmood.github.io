@@ -184,6 +184,34 @@
                 grid-column: 1 / 2;
             }
         }
+        @media (max-width: 900px) {
+          .project-section {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+          }
+
+          /* Reset grid placement for the right-aligned layout on mobile */
+          .layout-right .project-image-wrapper,
+          .layout-right .project-text {
+            grid-column: 1 / 2;
+            grid-row: auto; /* It's good practice to reset the row as well */
+          }
+
+          /* --- NEW FIX: Reset animations for all sections on mobile --- */
+          .project-section .project-image-wrapper,
+          .project-section .project-text {
+            /* Reset any horizontal transforms */
+            transform: translateX(0); 
+            /* Apply the default vertical transform for a consistent mobile animation */
+            transform: translateY(30px);
+          }
+
+          .project-section.is-visible .project-image-wrapper,
+          .project-section.is-visible .project-text {
+            /* Ensure the final state is also correct */
+            transform: translateY(0);
+          }
+        }
     </style>
 </head>
 <body>
