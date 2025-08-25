@@ -1,90 +1,333 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="icon" href="https://github.githubassets.com/favicons/favicon-dark.svg" type="image/svg+xml">
+    <style>
+        /* Modern CSS Reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-<html>
-	<head>
-		<title>Khalil Mouawad</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+        /* Variables for easy customization */
+        :root {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --primary-color: #00aaff;
+            --card-bg-color: #1e1e1e;
+            --border-color: #333;
+        }
 
-			<div id="wrapper" class="fade-in">
+        html {
+            scroll-behavior: smooth;
+        }
 
-                    <header id="header">
-                    </header>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
 
-					<nav id="nav">
-						<ul class="links">
-							<li class="active"><a href="index.html">Projects</a></li>
-							<li><a href="skills.html">Skills</a></li>
-						</ul>
-						<ul class="icons">
-							<li><a href="https://www.linkedin.com/in/mouawad-khalil" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
-							<li><a href="https://github.com/khlmood" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-						</ul>
-					</nav>
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+        }
 
-					<div id="main">
+        .hero h1 {
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--primary-color), var(--text-color), var(--primary-color));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: text-gradient-animation 5s linear infinite;
+        }
+        
+        @keyframes text-gradient-animation {
+            to { background-position: 200% center; }
+        }
 
-							<article class="post featured">
-								<header class="major">
-									<h3><a href="#projects" >Personal projects</a></h3>
-									<p>
-										I have dedicated time to various projects to enhance my understanding of<br />
-										several programming languages using well-known and useful libraries<br />
-										and bring my ideas to life.
-									</p>
-								</header>
-							</article>
+        .hero p {
+            font-size: clamp(1.1rem, 4vw, 1.5rem);
+            color: #aaa;
+            max-width: 650px;
+            margin-top: 1rem;
+        }
 
-							<section id="projects" class="posts">
-								<article>
-									<header>
-										<h2>Music Downloader</h2>
-									</header>
-									<a class="image fit"><img src="images/pic02.jpg" alt="" /></a>
-									<p>The GUI was built using the Python library Custom Tkinter, which is a modern-looking version of the original Tkinter library. 
-									   After entering the artist's name and clicking on the search button, a request is sent to the iTunes API website to retrieve information.
-									   The retrieved information is then analyzed and the relevant details are stored in an array which is displayed to the user. 
-									   After selecting the desired songs by checking the checkboxes and clicking on the download button, 
-									   musicD opens Google Chrome in the background and navigates to the website https://www.mp3juices.cc/2d0851 using the Selenium library for web scraping. 
-									   The selected music files are then downloaded one by one before the browser is closed.</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/khlmood/musicD" class="button">Check It Out</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<h2>Connect Four</h2>
-									</header>
-									<a class="image fit"><img src="images/pic03.png" alt="" /></a>
-									<p>showcasing a deep understanding of game logic, user interface design, and efficient algorithm implementation. 
-									   The sophisticated Connect Four game is thoughtfully structured for scalability and enhanced with a Minimax algorithm for challenging AI gameplay. 
-									   The codebase is meticulously organized, ensuring maintainability and scalability. Built using advanced programming techniques and SQLite3 for efficient data handling.</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/khlmood/connect4" class="button">Check It Out</a></li>
-									</ul>
-								</article>
-								
-							</section>
+        /* --- Project Section General Styles --- */
+        .project-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 6rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
 
-					</div>
+        .project-image-wrapper {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
 
-					<div>
-						<h1><!-- to leave space --></h1>
-					</div>
+        .project-image-wrapper img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
 
-			</div>
+        .project-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
 
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+        .project-text .tech-stack {
+            font-style: italic;
+            color: #aaa;
+            margin-bottom: 1.5rem;
+        }
 
-	</body>
+        .project-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-right: 1.5rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .project-links a:hover {
+            color: var(--bg-color);
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        /* --- Alternating Layout --- */
+        .layout-right .project-image-wrapper {
+            grid-column: 2 / 3;
+            grid-row: 1 / 2;
+        }
+        .layout-right .project-text {
+            grid-column: 1 / 2;
+            grid-row: 1 / 2;
+        }
+
+        /* --- Scroll Animation --- */
+        .project-section .project-image-wrapper,
+        .project-section .project-text {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .project-section.is-visible .project-image-wrapper,
+        .project-section.is-visible .project-text {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Animate from opposite sides */
+        .layout-left .project-image-wrapper { transform: translateX(-50px); }
+        .layout-left .project-text { transform: translateX(50px); }
+        .layout-right .project-image-wrapper { transform: translateX(50px); }
+        .layout-right .project-text { transform: translateX(-50px); }
+        
+        .project-section.is-visible .project-image-wrapper,
+        .project-section.is-visible .project-text {
+            transform: translateX(0);
+        }
+        
+        /* --- Contact & Footer --- */
+        .contact { text-align: center; padding: 6rem 1rem; }
+        .contact h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .contact p { max-width: 600px; margin: 0 auto 2rem; font-size: 1.2rem; }
+        .contact-btn { display: inline-block; background-color: var(--primary-color); color: #fff; padding: 1rem 2rem; text-decoration: none; border-radius: 5px; font-size: 1.1rem; font-weight: 500; transition: all 0.3s ease; }
+        .contact-btn:hover { background-color: #0088cc; transform: scale(1.05); }
+        footer { text-align: center; padding: 2rem 1rem; color: #aaa; border-top: 1px solid var(--border-color); }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 900px) {
+            .project-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .layout-right .project-image-wrapper,
+            .layout-right .project-text {
+                grid-column: 1 / 2;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <h1>Khalil Mouawad</h1>
+        <p>A detail-oriented developer specializing in building robust applications and elegant user experiences, from front-end design to data-driven machine learning models.</p>
+    </header>
+
+    <main class="container">
+        
+        <!-- PROJECT 1: MyStarty -->
+        <section class="project-section layout-left">
+            <div class="project-image-wrapper">
+                <img src="mystarty.png" alt="MyStarty Project Screenshot">
+            </div>
+            <div class="project-text">
+                <h2>MyStarty - Startup MVP</h2>
+                <div class="tech-stack">Role: Sole Frontend Developer | Tech: React, TypeScript, Styled-Components, REST API</div>
+                <p>
+                    As the sole frontend developer for the "MyStarty" startup, I led the development of the entire user interface from concept to launch. Collaborating directly with a backend developer, I successfully delivered a fully functional Minimum Viable Product (MVP), establishing the foundation of the company's web presence.
+                </p>
+                <div class="project-links">
+                    <a href="https://mystarty.com/" target="_blank">Website</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECT 2: Employee Attrition ML -->
+        <section class="project-section layout-right">
+            <div class="project-image-wrapper">
+                <img src="RFT.png" alt="Machine Learning Project Visualization">
+            </div>
+            <div class="project-text">
+                <h2>Predicting Employee Attrition</h2>
+                <div class="tech-stack">Tech: Python, Scikit-learn, Pandas, Matplotlib</div>
+                <p>
+                    This project explored workforce analytics by building a model to predict employee attrition. I implemented and evaluated various supervised and unsupervised machine learning techniques. The Random Forest algorithm proved to be the most effective, achieving the highest accuracy in predicting outcomes based on the dataset.
+                </p>
+                <div class="project-links">
+                    <a href="https://github.com/khlmood/Predicting-Attrition" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- PROJECT 3: Cosmic Vision -->
+        <section class="project-section layout-left">
+            <div class="project-image-wrapper">
+                <img src="nasa-space-app.png" alt="Cosmic Vision Project Screenshot">
+            </div>
+            <div class="project-text">
+                <h2>Cosmic Vision: NASA Hackathon</h2>
+                <div class="tech-stack">Tech: THREE.js, JavaScript, GSAP, Spline, API Integration</div>
+                <p>
+                    As part of a collaborative team for the NASA Space App Challenge, I contributed to Cosmic Vision, an interactive 3D space exploration app. The platform features real-time celestial tracking and educational data on Near-Earth Objects (NEOs), brought to life with smooth animations and a 3D solar system model.
+                </p>
+                <div class="project-links">
+                    <a href="https://github.com/khlmood/Cosmic-vision" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW PROJECT 4: Invest'In -->
+        <section class="project-section layout-right">
+            <div class="project-image-wrapper">
+                <img src="investin.png" alt="Invest'In Stock Trading Simulator Screenshot">
+            </div>
+            <div class="project-text">
+                <h2>Invest'In - Stock Simulator</h2>
+                <div class="tech-stack">React, Firebase, Vercel Serverless, Yahoo Finance API, News API</div>
+                <p>
+                    Developed a full-stack, real-time stock trading simulator using React and Firebase. The platform integrates multiple APIs for live market and news data, while utilizing Firebase Auth and Firestore for secure user management and transaction logging. Community engagement is fostered through market discussions, direct messaging, and an AI-powered chatbot. The application is hosted on Vercel, leveraging serverless functions for all backend logic and secure API interactions.
+                </p>
+                <div class="project-links">
+                    <a href="https://fyp-uni.vercel.app/" target="_blank">Live Demo</a>
+                    <a href="https://github.com/khlmood/investin" target="_blank">GitHub</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- REORDERED PROJECT 5: Connect Four AI -->
+        <section class="project-section layout-left">
+            <div class="project-image-wrapper">
+                <img src="connect4.png" alt="Connect Four Game Screenshot">
+            </div>
+            <div class="project-text">
+                <h2>Connect Four with AI</h2>
+                <div class="tech-stack">Tech: C++, OpenGL, Minimax Algorithm, SQLite3</div>
+                <p>
+                    This project showcases a deep understanding of game logic and efficient algorithm implementation. It features a scalable Connect Four game built with C++ and rendered using OpenGL. The AI opponent is powered by a challenging Minimax algorithm, and the codebase is meticulously organized for maintainability and scalability, using SQLite3 for efficient data handling.
+                </p>
+                <div class="project-links">
+                    <a href="https://github.com/khlmood/connect4" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- REORDERED PROJECT 6: musicD Downloader -->
+        <section class="project-section layout-right">
+            <div class="project-image-wrapper">
+                <img src="musicD.jpg" alt="musicD Application Screenshot">
+            </div>
+            <div class="project-text">
+                <h2>musicD - Music Downloader</h2>
+                <div class="tech-stack">Tech: Python, CustomTkinter, Selenium Web Scraping, iTunes API</div>
+                <p>
+                    musicD is a desktop application that simplifies music discovery and downloading. It features a modern GUI built with CustomTkinter that fetches track data from the iTunes API. For downloading, the app intelligently automates web scraping tasks using Selenium and WebDriver to retrieve music files seamlessly.
+                </p>
+                <div class="project-links">
+                    <a href="https://github.com/khlmood/musicD" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <section id="contact" class="contact">
+        <h2>Get In Touch</h2>
+        <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of an ambitious team. Feel free to reach out.</p>
+        <a href="mailto:khalilmod@outlook.com" class="contact-btn">Say Hello</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Khalil Mouawad</p>
+    </footer>
+
+    <script>
+        // This is a small, efficient script for the scroll animation
+        const animatedSections = document.querySelectorAll('.project-section');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, {
+            threshold: 0.2 // Trigger when 20% of the element is visible
+        });
+
+        animatedSections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+
+</body>
 </html>
