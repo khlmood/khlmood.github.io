@@ -113,6 +113,7 @@
             margin-bottom: 1.5rem;
         }
 
+        /* DESKTOP BUTTON STYLES */
         .project-links a {
             color: var(--text-color);
             text-decoration: none;
@@ -144,17 +145,10 @@
         .project-section .project-image-wrapper,
         .project-section .project-text {
             opacity: 0;
-            transform: translateY(30px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
         
-        .project-section.is-visible .project-image-wrapper,
-        .project-section.is-visible .project-text {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Animate from opposite sides */
+        /* Animate from opposite sides on Desktop */
         .layout-left .project-image-wrapper { transform: translateX(-50px); }
         .layout-left .project-text { transform: translateX(50px); }
         .layout-right .project-image-wrapper { transform: translateX(50px); }
@@ -162,6 +156,7 @@
         
         .project-section.is-visible .project-image-wrapper,
         .project-section.is-visible .project-text {
+            opacity: 1;
             transform: translateX(0);
         }
         
@@ -179,38 +174,38 @@
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
+
             .layout-right .project-image-wrapper,
             .layout-right .project-text {
                 grid-column: 1 / 2;
+                grid-row: auto;
             }
-        }
-        @media (max-width: 900px) {
-          .project-section {
-            grid-template-columns: 1fr;
-            gap: 2rem;
-          }
 
-          /* Reset grid placement for the right-aligned layout on mobile */
-          .layout-right .project-image-wrapper,
-          .layout-right .project-text {
-            grid-column: 1 / 2;
-            grid-row: auto; /* It's good practice to reset the row as well */
-          }
+            /* MOBILE ANIMATION FIX: Reset animations to be vertical */
+            .project-section .project-image-wrapper,
+            .project-section .project-text {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            
+            .project-section.is-visible .project-image-wrapper,
+            .project-section.is-visible .project-text {
+                opacity: 1;
+                transform: translateY(0);
+            }
 
-          /* --- NEW FIX: Reset animations for all sections on mobile --- */
-          .project-section .project-image-wrapper,
-          .project-section .project-text {
-            /* Reset any horizontal transforms */
-            transform: translateX(0); 
-            /* Apply the default vertical transform for a consistent mobile animation */
-            transform: translateY(30px);
-          }
+            /* NEW: MOBILE BUTTON STYLES */
+            .project-links a {
+                background-color: var(--primary-color);
+                color: #fff;
+                border-color: var(--primary-color); /* Match border to background */
+            }
 
-          .project-section.is-visible .project-image-wrapper,
-          .project-section.is-visible .project-text {
-            /* Ensure the final state is also correct */
-            transform: translateY(0);
-          }
+            .project-links a:hover {
+                background-color: #0088cc;
+                border-color: #0088cc;
+                transform: scale(1.05);
+            }
         }
     </style>
 </head>
